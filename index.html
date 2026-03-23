@@ -14,6 +14,7 @@
       --text-main: #f5f5f5;
       --text-soft: rgba(255,255,255,0.75);
       --card-bg: rgba(0,0,0,0.35);
+      --border-soft: rgba(255,255,255,0.12);
     }
 
     * {
@@ -37,7 +38,7 @@
       padding: 90px 20px;
     }
 
-    h1, h2 {
+    h1, h2, h3 {
       margin: 0 0 20px;
       font-weight: 700;
       letter-spacing: -0.5px;
@@ -58,12 +59,21 @@
       color: var(--text-soft);
     }
 
+    .section-intro {
+      max-width: 760px;
+      margin: 0 auto 30px;
+    }
+
     /* BOTONES */
     .buttons {
       margin-top: 40px;
     }
 
-    .buttons a {
+    .buttons a,
+    .quiz-actions button,
+    .option-btn,
+    .next-btn,
+    .restart-btn {
       display: inline-block;
       margin: 10px;
       padding: 14px 30px;
@@ -72,21 +82,30 @@
       font-weight: 600;
       color: #000;
       background: var(--gold);
+      border: none;
+      cursor: pointer;
       transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease;
+      font-size: 16px;
     }
 
-    .buttons a.secondary {
+    .buttons a.secondary,
+    .restart-btn {
       background: transparent;
       color: var(--text-main);
       border: 1px solid var(--text-soft);
     }
 
-    .buttons a:hover {
+    .buttons a:hover,
+    .quiz-actions button:hover,
+    .option-btn:hover,
+    .next-btn:hover,
+    .restart-btn:hover {
       transform: translateY(-3px);
       background: var(--gold-hover);
     }
 
-    .buttons a.secondary:hover {
+    .buttons a.secondary:hover,
+    .restart-btn:hover {
       background: rgba(255,255,255,0.08);
       color: var(--text-main);
     }
@@ -181,6 +200,7 @@
     .card p {
       font-size: 15px;
       max-width: 100%;
+      margin-bottom: 10px;
     }
 
     /* EXPERIENCIA */
@@ -208,6 +228,151 @@
       max-width: 100%;
     }
 
+    /* QUIZ */
+    .quiz-section {
+      background: rgba(255,255,255,0.03);
+    }
+
+    .quiz-wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      background: rgba(0,0,0,0.28);
+      border: 1px solid var(--border-soft);
+      border-radius: 24px;
+      padding: 30px 20px;
+    }
+
+    .quiz-badge {
+      display: inline-block;
+      color: var(--gold);
+      font-size: 14px;
+      letter-spacing: 2px;
+      margin-bottom: 16px;
+    }
+
+    .quiz-progress {
+      margin: 20px auto 30px;
+      max-width: 500px;
+      height: 10px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .quiz-progress-bar {
+      height: 100%;
+      width: 25%;
+      background: var(--gold);
+      transition: width 0.3s ease;
+    }
+
+    .question-box {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .question-number {
+      font-size: 14px;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+
+    .question-title {
+      font-size: clamp(24px, 3.4vw, 34px);
+      margin-bottom: 25px;
+      color: var(--text-main);
+    }
+
+    .options-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .option-btn {
+      width: 100%;
+      text-align: center;
+      background: transparent;
+      color: var(--text-main);
+      border: 1px solid var(--border-soft);
+      margin: 0;
+      border-radius: 18px;
+      padding: 18px 14px;
+    }
+
+    .option-btn:hover {
+      background: rgba(255,255,255,0.08);
+      color: var(--text-main);
+    }
+
+    .option-btn.selected {
+      background: var(--gold);
+      color: #000;
+      border-color: var(--gold);
+    }
+
+    .quiz-actions {
+      margin-top: 20px;
+    }
+
+    .next-btn {
+      min-width: 180px;
+    }
+
+    .next-btn:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .quiz-result {
+      display: none;
+      max-width: 760px;
+      margin: 0 auto;
+      animation: fadeIn 0.4s ease;
+    }
+
+    .quiz-result.show {
+      display: block;
+    }
+
+    .result-card {
+      background: rgba(0,0,0,0.35);
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid var(--border-soft);
+    }
+
+    .result-card img {
+      width: 100%;
+      max-height: 420px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .result-content {
+      padding: 28px 20px 34px;
+    }
+
+    .result-label {
+      color: var(--gold);
+      font-size: 14px;
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+    }
+
+    .result-title {
+      font-size: clamp(28px, 4vw, 42px);
+      margin-bottom: 10px;
+    }
+
+    .result-text {
+      max-width: 620px;
+      margin: 0 auto 20px;
+    }
+
     /* CTA FINAL */
     .cta-final {
       background: linear-gradient(
@@ -222,6 +387,11 @@
       opacity: 0.6;
     }
 
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
     /* RESPONSIVE */
     @media (max-width: 900px) {
       .esencia-grid {
@@ -232,6 +402,10 @@
       .esencia-grid h2,
       .esencia-grid p {
         text-align: center;
+      }
+
+      .options-grid {
+        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -318,6 +492,51 @@
     </div>
   </section>
 
+  <!-- QUIZ -->
+  <section class="quiz-section">
+    <div class="quiz-wrap">
+      <span class="quiz-badge">ELIGE TU ARMA</span>
+      <h2>Descubre tu bebida ideal</h2>
+      <p class="section-intro">
+        Responde unas preguntas rápidas y descubre qué bebida va más contigo.
+      </p>
+
+      <div id="quiz-box">
+        <div class="quiz-progress">
+          <div class="quiz-progress-bar" id="quiz-progress-bar"></div>
+        </div>
+
+        <div class="question-box">
+          <div class="question-number" id="question-number">Pregunta 1 de 4</div>
+          <div class="question-title" id="question-title"></div>
+          <div class="options-grid" id="options-grid"></div>
+
+          <div class="quiz-actions">
+            <button class="next-btn" id="next-btn" disabled>Siguiente</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="quiz-result" id="quiz-result">
+        <div class="result-card">
+          <img id="result-image" src="" alt="Resultado bebida">
+          <div class="result-content">
+            <div class="result-label">TU ARMA IDEAL ES</div>
+            <h3 class="result-title" id="result-title"></h3>
+            <p class="result-text" id="result-text"></p>
+
+            <div class="buttons">
+              <a href="https://www.ubereats.com/mx/store/cafe-verdugo/3zZlkYTuQ_y2qM_UmuQTBA" target="_blank">
+                Pedir en Uber Eats
+              </a>
+              <button class="restart-btn" id="restart-btn">Volver a intentarlo</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- CTA FINAL -->
   <section class="cta-final">
     <h2>Elige tu arma para combatir la rutina.</h2>
@@ -331,6 +550,164 @@
   <footer>
     © Café Verdugo · Puerto Vallarta
   </footer>
+
+  <script>
+    const quizData = [
+      {
+        question: "¿Qué necesitas hoy?",
+        answers: [
+          { text: "Energía fuerte", scores: { intenso: 2 } },
+          { text: "Algo reconfortante", scores: { cremoso: 2 } },
+          { text: "Algo dulce", scores: { dulce: 2 } },
+          { text: "Algo refrescante", scores: { fresco: 2 } }
+        ]
+      },
+      {
+        question: "¿Qué perfil disfrutas más?",
+        answers: [
+          { text: "Amargo e intenso", scores: { intenso: 2 } },
+          { text: "Suave y cremoso", scores: { cremoso: 2 } },
+          { text: "Dulce e indulgente", scores: { dulce: 2 } },
+          { text: "Ligero y fresco", scores: { fresco: 2 } }
+        ]
+      },
+      {
+        question: "¿Cómo prefieres tu bebida?",
+        answers: [
+          { text: "Caliente", scores: { intenso: 1, cremoso: 1 } },
+          { text: "Fría", scores: { fresco: 2 } },
+          { text: "Me da igual", scores: { dulce: 1, cremoso: 1 } }
+        ]
+      },
+      {
+        question: "¿Qué vibra tienes hoy?",
+        answers: [
+          { text: "Directo y sin rodeos", scores: { intenso: 2 } },
+          { text: "Relajado", scores: { cremoso: 2 } },
+          { text: "Antojado", scores: { dulce: 2 } },
+          { text: "Activo / dinámico", scores: { fresco: 2 } }
+        ]
+      }
+    ];
+
+    const resultsData = {
+      intenso: {
+        title: "Espresso Americano",
+        text: "Directo, fuerte y sin distracciones. Para cuando necesitas claridad y energía real.",
+        image: "assets/images/espresso.jpg"
+      },
+      cremoso: {
+        title: "Latte Clásico",
+        text: "Suave, equilibrado y reconfortante. Perfecto para disfrutar sin prisa.",
+        image: "assets/images/latte.jpg"
+      },
+      dulce: {
+        title: "Frappe Oreo",
+        text: "Intenso, frío y adictivo. Cuando quieres darte un gusto de verdad.",
+        image: "assets/images/frappe.jpg"
+      },
+      fresco: {
+        title: "Latte Frío",
+        text: "Ligero, refrescante y balanceado. Ideal para mantenerte activo sin saturarte.",
+        image: "assets/images/latte-frio.jpg"
+      }
+    };
+
+    let currentQuestion = 0;
+    let selectedAnswer = null;
+    let scores = {
+      intenso: 0,
+      cremoso: 0,
+      dulce: 0,
+      fresco: 0
+    };
+
+    const questionNumber = document.getElementById("question-number");
+    const questionTitle = document.getElementById("question-title");
+    const optionsGrid = document.getElementById("options-grid");
+    const nextBtn = document.getElementById("next-btn");
+    const progressBar = document.getElementById("quiz-progress-bar");
+    const quizBox = document.getElementById("quiz-box");
+    const quizResult = document.getElementById("quiz-result");
+    const resultTitle = document.getElementById("result-title");
+    const resultText = document.getElementById("result-text");
+    const resultImage = document.getElementById("result-image");
+    const restartBtn = document.getElementById("restart-btn");
+
+    function renderQuestion() {
+      const q = quizData[currentQuestion];
+      questionNumber.textContent = `Pregunta ${currentQuestion + 1} de ${quizData.length}`;
+      questionTitle.textContent = q.question;
+      optionsGrid.innerHTML = "";
+      selectedAnswer = null;
+      nextBtn.disabled = true;
+
+      progressBar.style.width = `${((currentQuestion + 1) / quizData.length) * 100}%`;
+
+      q.answers.forEach((answer, index) => {
+        const btn = document.createElement("button");
+        btn.className = "option-btn";
+        btn.textContent = answer.text;
+        btn.addEventListener("click", () => {
+          document.querySelectorAll(".option-btn").forEach(b => b.classList.remove("selected"));
+          btn.classList.add("selected");
+          selectedAnswer = answer;
+          nextBtn.disabled = false;
+        });
+        optionsGrid.appendChild(btn);
+      });
+    }
+
+    function applyScores(scoreObj) {
+      for (const key in scoreObj) {
+        scores[key] += scoreObj[key];
+      }
+    }
+
+    function getFinalResult() {
+      const ordered = Object.entries(scores).sort((a, b) => b[1] - a[1]);
+      return ordered[0][0];
+    }
+
+    nextBtn.addEventListener("click", () => {
+      if (!selectedAnswer) return;
+
+      applyScores(selectedAnswer.scores);
+
+      if (currentQuestion < quizData.length - 1) {
+        currentQuestion++;
+        renderQuestion();
+      } else {
+        const resultKey = getFinalResult();
+        const result = resultsData[resultKey];
+
+        quizBox.style.display = "none";
+        quizResult.classList.add("show");
+
+        resultTitle.textContent = result.title;
+        resultText.textContent = result.text;
+        resultImage.src = result.image;
+        resultImage.alt = result.title;
+      }
+    });
+
+    restartBtn.addEventListener("click", () => {
+      currentQuestion = 0;
+      selectedAnswer = null;
+      scores = {
+        intenso: 0,
+        cremoso: 0,
+        dulce: 0,
+        fresco: 0
+      };
+
+      quizResult.classList.remove("show");
+      quizBox.style.display = "block";
+      renderQuestion();
+    });
+
+    renderQuestion();
+  </script>
 
 </body>
 </html>
