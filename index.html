@@ -9,12 +9,14 @@
     :root {
       --bg-dark: #0b0705;
       --bg-soft: rgba(255,255,255,0.04);
+      --bg-soft-2: rgba(255,255,255,0.025);
       --gold: #c89b3c;
       --gold-hover: #e0b85c;
       --text-main: #f5f5f5;
       --text-soft: rgba(255,255,255,0.75);
       --card-bg: rgba(0,0,0,0.35);
       --border-soft: rgba(255,255,255,0.12);
+      --max-width: 1180px;
     }
 
     * {
@@ -30,76 +32,93 @@
       font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
       background: radial-gradient(circle at top, #1a120b, var(--bg-dark));
       color: var(--text-main);
-      text-align: center;
       line-height: 1.6;
+      text-align: center;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
     }
 
     section {
       padding: 90px 20px;
     }
 
-    h1, h2, h3 {
-      margin: 0 0 20px;
+    h1, h2, h3, h4 {
+      margin: 0 0 18px;
       font-weight: 700;
       letter-spacing: -0.5px;
     }
 
     h1 {
-      font-size: clamp(38px, 6vw, 64px);
+      font-size: clamp(42px, 7vw, 78px);
+      line-height: 1.02;
     }
 
     h2 {
-      font-size: clamp(28px, 4.5vw, 42px);
+      font-size: clamp(30px, 4.5vw, 46px);
+      line-height: 1.1;
+    }
+
+    h3 {
+      font-size: 24px;
     }
 
     p {
       font-size: 18px;
-      max-width: 650px;
-      margin: 0 auto;
       color: var(--text-soft);
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
     }
 
     .section-intro {
+      margin: 0 auto 28px;
       max-width: 760px;
-      margin: 0 auto 30px;
     }
 
     /* BOTONES */
     .buttons {
-      margin-top: 40px;
+      margin-top: 34px;
     }
 
     .buttons a,
-    .quiz-actions button,
     .option-btn,
     .next-btn,
-    .restart-btn {
+    .restart-btn,
+    .drink-link {
       display: inline-block;
       margin: 10px;
-      padding: 14px 30px;
-      border-radius: 40px;
+      padding: 14px 28px;
+      border-radius: 999px;
       text-decoration: none;
-      font-weight: 600;
-      color: #000;
-      background: var(--gold);
+      font-weight: 700;
+      font-size: 16px;
       border: none;
       cursor: pointer;
-      transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease;
-      font-size: 16px;
+      background: var(--gold);
+      color: #000;
+      transition: transform 0.22s ease, background 0.22s ease, color 0.22s ease, border-color 0.22s ease;
     }
 
     .buttons a.secondary,
     .restart-btn {
       background: transparent;
       color: var(--text-main);
-      border: 1px solid var(--text-soft);
+      border: 1px solid var(--border-soft);
     }
 
     .buttons a:hover,
-    .quiz-actions button:hover,
     .option-btn:hover,
     .next-btn:hover,
-    .restart-btn:hover {
+    .restart-btn:hover,
+    .drink-link:hover {
       transform: translateY(-3px);
       background: var(--gold-hover);
     }
@@ -114,23 +133,64 @@
     .hero {
       min-height: 100vh;
       display: flex;
-      flex-direction: column;
+      align-items: center;
       justify-content: center;
-      padding-top: 120px;
+      padding: 140px 20px 100px;
+      position: relative;
+      overflow: hidden;
       background:
-        linear-gradient(
-          rgba(0,0,0,0.55),
-          rgba(0,0,0,0.85)
-        ),
+        linear-gradient(rgba(0,0,0,0.44), rgba(0,0,0,0.84)),
         url("assets/images/hero.jpg") center/cover no-repeat;
     }
 
-    .hero span {
-      display: block;
-      font-size: 14px;
-      letter-spacing: 2px;
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, rgba(200,155,60,0.12), transparent 58%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .hero-eyebrow {
+      display: inline-block;
+      margin-bottom: 18px;
       color: var(--gold);
-      margin-bottom: 20px;
+      font-size: 13px;
+      letter-spacing: 2.4px;
+      text-transform: uppercase;
+    }
+
+    .hero-subtitle {
+      max-width: 760px;
+      margin: 0 auto 16px;
+      font-size: 20px;
+      color: var(--text-main);
+    }
+
+    .hero-support {
+      max-width: 700px;
+      margin: 0 auto;
+      font-size: 16px;
+      color: var(--text-soft);
+    }
+
+    .hero-microcopy {
+      margin-top: 14px;
+      font-size: 14px;
+      color: rgba(255,255,255,0.72);
+      letter-spacing: 0.3px;
+    }
+
+    .hero .buttons a {
+      min-width: 220px;
+      text-align: center;
     }
 
     /* ESENCIA */
@@ -141,7 +201,7 @@
     .esencia-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 40px;
+      gap: 42px;
       align-items: center;
       max-width: 1100px;
       margin: 0 auto;
@@ -150,72 +210,116 @@
 
     .esencia-grid img {
       width: 100%;
-      border-radius: 20px;
-      display: block;
+      border-radius: 22px;
+      object-fit: cover;
+      box-shadow: 0 18px 45px rgba(0,0,0,0.25);
     }
 
-    .esencia-grid h2 {
-      text-align: left;
-      margin-bottom: 20px;
-    }
-
+    .esencia-grid h2,
     .esencia-grid p {
-      margin: 0;
-      max-width: 100%;
       text-align: left;
+      margin-left: 0;
+      margin-right: 0;
+      max-width: 100%;
     }
 
     /* DESTACADOS */
+    .destacados {
+      background: transparent;
+    }
+
     .cards {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 30px;
-      max-width: 1000px;
-      margin: 60px auto 0;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 28px;
+      max-width: 1100px;
+      margin: 50px auto 0;
     }
 
     .card {
       background: var(--card-bg);
-      border-radius: 20px;
-      padding: 20px;
-      transition: transform 0.3s ease;
+      border: 1px solid var(--border-soft);
+      border-radius: 22px;
+      padding: 18px;
+      text-align: left;
+      transition: transform 0.28s ease, box-shadow 0.28s ease;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.18);
     }
 
     .card:hover {
       transform: translateY(-6px);
+      box-shadow: 0 18px 38px rgba(0,0,0,0.28);
     }
 
     .card img {
       width: 100%;
       border-radius: 16px;
-      margin-bottom: 15px;
-      display: block;
+      margin-bottom: 16px;
+      aspect-ratio: 4 / 4.6;
+      object-fit: cover;
+    }
+
+    .card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      background: rgba(200,155,60,0.14);
+      color: var(--gold);
+      border: 1px solid rgba(200,155,60,0.2);
+      white-space: nowrap;
     }
 
     .card h3 {
-      margin: 10px 0;
+      margin: 0;
       font-size: 22px;
+      line-height: 1.15;
     }
 
     .card p {
-      font-size: 15px;
+      margin: 0 0 16px;
       max-width: 100%;
-      margin-bottom: 10px;
+      font-size: 15px;
+      color: var(--text-soft);
+      text-align: left;
+    }
+
+    .drink-link {
+      margin: 0;
+      width: 100%;
+      text-align: center;
+      border-radius: 14px;
+      padding: 13px 18px;
     }
 
     /* EXPERIENCIA */
+    .experiencia {
+      background: var(--bg-soft);
+    }
+
     .features {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 40px;
-      max-width: 900px;
-      margin: 60px auto 0;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 26px;
+      max-width: 1000px;
+      margin: 50px auto 0;
     }
 
     .feature {
-      background: rgba(255,255,255,0.03);
-      border-radius: 18px;
-      padding: 24px 20px;
+      background: var(--bg-soft-2);
+      border: 1px solid var(--border-soft);
+      border-radius: 20px;
+      padding: 26px 22px;
     }
 
     .feature h4 {
@@ -234,12 +338,12 @@
     }
 
     .quiz-wrap {
-      max-width: 900px;
+      max-width: 940px;
       margin: 0 auto;
       background: rgba(0,0,0,0.28);
       border: 1px solid var(--border-soft);
       border-radius: 24px;
-      padding: 30px 20px;
+      padding: 32px 20px;
     }
 
     .quiz-badge {
@@ -251,8 +355,8 @@
     }
 
     .quiz-progress {
-      margin: 20px auto 30px;
-      max-width: 500px;
+      margin: 18px auto 30px;
+      max-width: 520px;
       height: 10px;
       background: rgba(255,255,255,0.08);
       border-radius: 999px;
@@ -267,7 +371,7 @@
     }
 
     .question-box {
-      max-width: 700px;
+      max-width: 760px;
       margin: 0 auto;
     }
 
@@ -281,13 +385,14 @@
       font-size: clamp(24px, 3.4vw, 34px);
       margin-bottom: 25px;
       color: var(--text-main);
+      line-height: 1.2;
     }
 
     .options-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 16px;
-      max-width: 700px;
+      max-width: 760px;
       margin: 0 auto;
     }
 
@@ -314,11 +419,11 @@
     }
 
     .quiz-actions {
-      margin-top: 20px;
+      margin-top: 22px;
     }
 
     .next-btn {
-      min-width: 180px;
+      min-width: 190px;
     }
 
     .next-btn:disabled {
@@ -329,7 +434,7 @@
 
     .quiz-result {
       display: none;
-      max-width: 760px;
+      max-width: 780px;
       margin: 0 auto;
       animation: fadeIn 0.4s ease;
     }
@@ -343,11 +448,12 @@
       border-radius: 24px;
       overflow: hidden;
       border: 1px solid var(--border-soft);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.22);
     }
 
     .result-card img {
       width: 100%;
-      max-height: 420px;
+      max-height: 430px;
       object-fit: cover;
       display: block;
     }
@@ -375,10 +481,7 @@
 
     /* CTA FINAL */
     .cta-final {
-      background: linear-gradient(
-        rgba(0,0,0,0.7),
-        rgba(0,0,0,0.9)
-      );
+      background: linear-gradient(rgba(0,0,0,0.72), rgba(0,0,0,0.92));
     }
 
     footer {
@@ -393,7 +496,15 @@
     }
 
     /* RESPONSIVE */
-    @media (max-width: 900px) {
+    @media (max-width: 980px) {
+      .cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .features {
+        grid-template-columns: 1fr;
+      }
+
       .esencia-grid {
         grid-template-columns: 1fr;
         text-align: center;
@@ -403,9 +514,37 @@
       .esencia-grid p {
         text-align: center;
       }
+    }
 
+    @media (max-width: 700px) {
+      .hero {
+        padding: 120px 20px 80px;
+      }
+
+      .hero-subtitle {
+        font-size: 18px;
+      }
+
+      .hero-support {
+        font-size: 15px;
+      }
+
+      .hero .buttons a {
+        width: calc(100% - 20px);
+        max-width: 320px;
+      }
+
+      .cards,
       .options-grid {
         grid-template-columns: 1fr;
+      }
+
+      section {
+        padding: 80px 18px;
+      }
+
+      p {
+        font-size: 16px;
       }
     }
   </style>
@@ -415,26 +554,38 @@
 
   <!-- HERO -->
   <section class="hero">
-    <span>CAFÉ ARTESANAL · PUERTO VALLARTA</span>
-    <h1>Café Verdugo</h1>
-    <p>
-      Espresso, lattes y frappés preparados al momento.
-      Café con carácter.
-    </p>
+    <div class="hero-content">
+      <span class="hero-eyebrow">CAFÉ ARTESANAL · PUERTO VALLARTA</span>
 
-    <div class="buttons">
-      <a href="https://www.ubereats.com/mx/store/cafe-verdugo/3zZlkYTuQ_y2qM_UmuQTBA" target="_blank">
-        Pedir en Uber Eats
-      </a>
-      <a href="https://www.instagram.com/cafe_verdugo/" target="_blank" class="secondary">
-        Instagram
-      </a>
+      <h1>Elige tu arma.</h1>
+
+      <p class="hero-subtitle">
+        Café con carácter, listo para llegar a tu puerta.
+      </p>
+
+      <p class="hero-support">
+        Espresso, lattes, chai y frappés preparados al momento.
+        Ordénalos en Uber Eats y recíbelos en minutos.
+      </p>
+
+      <div class="buttons hero-cta-row">
+        <a href="https://www.ubereats.com/mx/store/cafe-verdugo/3zZlkYTuQ_y2qM_UmuQTBA" target="_blank">
+          Ordena ahora en Uber Eats
+        </a>
+        <a href="https://www.instagram.com/cafe_verdugo/" target="_blank" class="secondary">
+          Ver Instagram
+        </a>
+      </div>
+
+      <div class="hero-microcopy">
+        Disponible en Uber Eats · Rápido · Fácil · Directo
+      </div>
     </div>
   </section>
 
   <!-- ESENCIA -->
   <section class="esencia">
-    <div class="esencia-grid">
+    <div class="esencia-grid container">
       <img src="assets/images/esencia.jpg" alt="Café Verdugo">
       <div>
         <h2>Nuestra esencia</h2>
@@ -448,46 +599,98 @@
   </section>
 
   <!-- DESTACADOS -->
-  <section>
-    <h2>Bebidas destacadas</h2>
+  <section class="destacados">
+    <div class="container">
+      <h2>Bebidas destacadas</h2>
+      <p class="section-intro">
+        Seis formas distintas de entrar al mundo Verdugo. Elige la que vaya contigo hoy.
+      </p>
 
-    <div class="cards">
-      <div class="card">
-        <img src="assets/images/latte.jpg" alt="Latte Clásico">
-        <h3>Latte Clásico</h3>
-        <p>Suave, cremoso y equilibrado.</p>
-      </div>
+      <div class="cards">
+        <div class="card">
+          <img src="assets/images/latte.jpg" alt="Latte Clásico">
+          <div class="card-top">
+            <h3>Latte Clásico</h3>
+            <span class="tag">Clásico</span>
+          </div>
+          <p>Suave, cremoso y equilibrado. Para cuando quieres algo confiable y reconfortante.</p>
+          <a class="drink-link" href="https://www.ubereats.com/mx/store/cafe-verdugo/3zZlkYTuQ_y2qM_UmuQTBA" target="_blank">Pedir en Uber Eats</a>
+        </div>
 
-      <div class="card">
-        <img src="assets/images/frappe.jpg" alt="Frappe Oreo">
-        <h3>Frappe Oreo</h3>
-        <p>Intenso, frío y adictivo.</p>
-      </div>
+        <div class="card">
+          <img src="assets/images/latte-vainilla.jpg" alt="Latte Vainilla">
+          <div class="card-top">
+            <h3>Latte Vainilla</h3>
+            <span class="tag">Suave</span>
+          </div>
+          <p>Cremoso, amable y ligeramente dulce. Ideal para un antojo más cálido y relajado.</p>
+          <a class="drink-link" href="https://www.ubereats.com/mx/store/cafe-verdugo/3zZlkYTuQ_y2qM_UmuQTBA" target="_blank">Pedir en Uber Eats</a>
+        </div>
 
-      <div class="card">
-        <img src="assets/images/espresso.jpg" alt="Espresso Americano">
-        <h3>Espresso Americano</h3>
-        <p>Puro, directo y sin rodeos.</p>
+        <div class="card">
+          <img src="assets/images/frappe-oreo.jpg" alt="Frappe Oreo">
+          <div class="card-top">
+            <h3>Frappe Oreo</h3>
+            <span class="tag">Favorito</span>
+          </div>
+          <p>Frío, indulgente y brutalmente antojable. Cuando quieres darte un gusto serio.</p>
+          <a class="drink-link" href="https://www.ubereats.com/mx/store/cafe-verdugo/3zZlkYTuQ_y2qM_UmuQTBA" target="_blank">Pedir en Uber Eats</a>
+        </div>
+
+        <div class="card">
+          <img src="assets/images/chai-latte.jpg" alt="Chai Latte">
+          <div class="card-top">
+            <h3>Chai Latte</h3>
+            <span class="tag">Especiado</span>
+          </div>
+          <p>Distinto, aromático y reconfortante. Para quienes quieren salir de lo obvio.</p>
+          <a class="drink-link" href="https://www.ubereats.com/mx/store/cafe-verdugo/3zZlkYTuQ_y2qM_UmuQTBA" target="_blank">Pedir en Uber Eats</a>
+        </div>
+
+        <div class="card">
+          <img src="assets/images/latte-frio.jpg" alt="Latte Frío">
+          <div class="card-top">
+            <h3>Latte Frío</h3>
+            <span class="tag">Refrescante</span>
+          </div>
+          <p>Ligero, fresco y balanceado. Perfecto para seguir en movimiento sin pesadez.</p>
+          <a class="drink-link" href="https://www.ubereats.com/mx/store/cafe-verdugo/3zZlkYTuQ_y2qM_UmuQTBA" target="_blank">Pedir en Uber Eats</a>
+        </div>
+
+        <div class="card">
+          <img src="assets/images/espresso.jpg" alt="Espresso Americano">
+          <div class="card-top">
+            <h3>Espresso Americano</h3>
+            <span class="tag">Directo</span>
+          </div>
+          <p>Puro, intenso y sin rodeos. Para cuando necesitas enfoque y energía real.</p>
+          <a class="drink-link" href="https://www.ubereats.com/mx/store/cafe-verdugo/3zZlkYTuQ_y2qM_UmuQTBA" target="_blank">Pedir en Uber Eats</a>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- EXPERIENCIA -->
-  <section class="esencia">
-    <h2>La experiencia Verdugo</h2>
+  <section class="experiencia">
+    <div class="container">
+      <h2>La experiencia Verdugo</h2>
+      <p class="section-intro">
+        No somos genéricos. Cada bebida busca sentirse clara, consistente y con personalidad.
+      </p>
 
-    <div class="features">
-      <div class="feature">
-        <h4>☕ Grano seleccionado</h4>
-        <p>Calidad constante en cada taza.</p>
-      </div>
-      <div class="feature">
-        <h4>🔥 Preparación experta</h4>
-        <p>Precisión y cuidado en cada proceso.</p>
-      </div>
-      <div class="feature">
-        <h4>🪓 Carácter único</h4>
-        <p>No somos genéricos. Somos Verdugo.</p>
+      <div class="features">
+        <div class="feature">
+          <h4>☕ Grano seleccionado</h4>
+          <p>Buscamos calidad constante en cada taza, sin improvisaciones.</p>
+        </div>
+        <div class="feature">
+          <h4>🔥 Preparación experta</h4>
+          <p>Cuidado en cada detalle para que el sabor se mantenga a la altura.</p>
+        </div>
+        <div class="feature">
+          <h4>🪓 Carácter único</h4>
+          <p>No solo vendemos café. Vendemos una elección con identidad.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -498,7 +701,7 @@
       <span class="quiz-badge">ELIGE TU ARMA</span>
       <h2>Descubre tu bebida ideal</h2>
       <p class="section-intro">
-        Responde unas preguntas rápidas y descubre qué bebida va más contigo.
+        Responde unas preguntas rápidas y descubre cuál de nuestras bebidas va más contigo hoy.
       </p>
 
       <div id="quiz-box">
@@ -556,57 +759,67 @@
       {
         question: "¿Qué necesitas hoy?",
         answers: [
-          { text: "Energía fuerte", scores: { intenso: 2 } },
-          { text: "Algo reconfortante", scores: { cremoso: 2 } },
-          { text: "Algo dulce", scores: { dulce: 2 } },
-          { text: "Algo refrescante", scores: { fresco: 2 } }
+          { text: "Energía fuerte", scores: { americano: 2 } },
+          { text: "Algo reconfortante", scores: { latte: 2 } },
+          { text: "Algo dulce", scores: { oreo: 2 } },
+          { text: "Algo fresco", scores: { latteFrio: 2 } }
         ]
       },
       {
         question: "¿Qué perfil disfrutas más?",
         answers: [
-          { text: "Amargo e intenso", scores: { intenso: 2 } },
-          { text: "Suave y cremoso", scores: { cremoso: 2 } },
-          { text: "Dulce e indulgente", scores: { dulce: 2 } },
-          { text: "Ligero y fresco", scores: { fresco: 2 } }
+          { text: "Intenso y directo", scores: { americano: 2 } },
+          { text: "Suave y cremoso", scores: { latte: 2 } },
+          { text: "Dulce y amable", scores: { vainilla: 2 } },
+          { text: "Especiado y distinto", scores: { chai: 2 } }
         ]
       },
       {
-        question: "¿Cómo prefieres tu bebida?",
+        question: "¿Cómo te gustaría tomarlo?",
         answers: [
-          { text: "Caliente", scores: { intenso: 1, cremoso: 1 } },
-          { text: "Fría", scores: { fresco: 2 } },
-          { text: "Me da igual", scores: { dulce: 1, cremoso: 1 } }
+          { text: "Caliente", scores: { americano: 1, latte: 1, vainilla: 1, chai: 1 } },
+          { text: "Frío", scores: { latteFrio: 2, oreo: 1 } },
+          { text: "Algo más indulgente", scores: { oreo: 2, vainilla: 1 } }
         ]
       },
       {
         question: "¿Qué vibra tienes hoy?",
         answers: [
-          { text: "Directo y sin rodeos", scores: { intenso: 2 } },
-          { text: "Relajado", scores: { cremoso: 2 } },
-          { text: "Antojado", scores: { dulce: 2 } },
-          { text: "Activo / dinámico", scores: { fresco: 2 } }
+          { text: "Directo y sin rodeos", scores: { americano: 2 } },
+          { text: "Relajado y equilibrado", scores: { latte: 2 } },
+          { text: "Antojado", scores: { oreo: 2 } },
+          { text: "Curioso y diferente", scores: { chai: 2, vainilla: 1, latteFrio: 1 } }
         ]
       }
     ];
 
     const resultsData = {
-      intenso: {
+      americano: {
         title: "Espresso Americano",
         text: "Directo, fuerte y sin distracciones. Para cuando necesitas claridad y energía real.",
         image: "assets/images/espresso.jpg"
       },
-      cremoso: {
+      latte: {
         title: "Latte Clásico",
         text: "Suave, equilibrado y reconfortante. Perfecto para disfrutar sin prisa.",
         image: "assets/images/latte.jpg"
       },
-      dulce: {
-        title: "Frappe Oreo",
-        text: "Intenso, frío y adictivo. Cuando quieres darte un gusto de verdad.",
-        image: "assets/images/frappe.jpg"
+      vainilla: {
+        title: "Latte Vainilla",
+        text: "Cremoso, amable y con un toque dulce. Ideal para un momento más suave y cálido.",
+        image: "assets/images/latte-vainilla.jpg"
       },
-      fresco: {
+      oreo: {
+        title: "Frappe Oreo",
+        text: "Frío, indulgente y brutalmente antojable. Cuando quieres darte un gusto en serio.",
+        image: "assets/images/frappe-oreo.jpg"
+      },
+      chai: {
+        title: "Chai Latte",
+        text: "Especiado, distinto y reconfortante. Perfecto para quienes buscan algo con personalidad propia.",
+        image: "assets/images/chai-latte.jpg"
+      },
+      latteFrio: {
         title: "Latte Frío",
         text: "Ligero, refrescante y balanceado. Ideal para mantenerte activo sin saturarte.",
         image: "assets/images/latte-frio.jpg"
@@ -616,10 +829,12 @@
     let currentQuestion = 0;
     let selectedAnswer = null;
     let scores = {
-      intenso: 0,
-      cremoso: 0,
-      dulce: 0,
-      fresco: 0
+      americano: 0,
+      latte: 0,
+      vainilla: 0,
+      oreo: 0,
+      chai: 0,
+      latteFrio: 0
     };
 
     const questionNumber = document.getElementById("question-number");
@@ -644,16 +859,18 @@
 
       progressBar.style.width = `${((currentQuestion + 1) / quizData.length) * 100}%`;
 
-      q.answers.forEach((answer, index) => {
+      q.answers.forEach((answer) => {
         const btn = document.createElement("button");
         btn.className = "option-btn";
         btn.textContent = answer.text;
+
         btn.addEventListener("click", () => {
           document.querySelectorAll(".option-btn").forEach(b => b.classList.remove("selected"));
           btn.classList.add("selected");
           selectedAnswer = answer;
           nextBtn.disabled = false;
         });
+
         optionsGrid.appendChild(btn);
       });
     }
@@ -695,10 +912,12 @@
       currentQuestion = 0;
       selectedAnswer = null;
       scores = {
-        intenso: 0,
-        cremoso: 0,
-        dulce: 0,
-        fresco: 0
+        americano: 0,
+        latte: 0,
+        vainilla: 0,
+        oreo: 0,
+        chai: 0,
+        latteFrio: 0
       };
 
       quizResult.classList.remove("show");
