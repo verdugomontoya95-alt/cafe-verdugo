@@ -82,6 +82,13 @@
       margin: 0 auto 28px;
       max-width: 760px;
     }
+    
+    .card strong {
+  display: block;
+  margin: 8px 0 12px;
+  font-size: 18px;
+  color: var(--gold);
+}
 
     /* BOTONES */
     .buttons {
@@ -223,84 +230,97 @@
       max-width: 100%;
     }
 
-    /* DESTACADOS */
-    .destacados {
-      background: transparent;
-    }
+  <!-- DESTACADOS -->
+<section class="destacados">
+  <div class="container">
+    <h2>Bebidas destacadas</h2>
+    <p class="section-intro">
+      Seis formas distintas de entrar al mundo Verdugo. Elige la que vaya contigo hoy.
+    </p>
 
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 28px;
-      max-width: 1100px;
-      margin: 50px auto 0;
-    }
+    <div class="cards">
 
-    .card {
-      background: var(--card-bg);
-      border: 1px solid var(--border-soft);
-      border-radius: 22px;
-      padding: 18px;
-      text-align: left;
-      transition: transform 0.28s ease, box-shadow 0.28s ease;
-      box-shadow: 0 10px 24px rgba(0,0,0,0.18);
-    }
+      <div class="card">
+        <img src="assets/images/latte.jpg" alt="Latte Clásico">
+        <div class="card-top">
+          <h3>Latte Clásico</h3>
+          <span class="tag">Clásico</span>
+        </div>
+        <p>Suave, cremoso y equilibrado.</p>
+        <strong>$60 MXN</strong>
+        <a class="drink-link" href="https://www.ubereats.com/mx/store/cafe-verdugo/3zZlkYTuQ_y2qM_UmuQTBA" target="_blank">
+          Pedir en Uber Eats
+        </a>
+      </div>
 
-    .card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 18px 38px rgba(0,0,0,0.28);
-    }
+      <div class="card">
+        <img src="assets/images/latte-vainilla.jpg" alt="Latte Vainilla">
+        <div class="card-top">
+          <h3>Latte Vainilla</h3>
+          <span class="tag">Suave</span>
+        </div>
+        <p>Cremoso con toque dulce y reconfortante.</p>
+        <strong>$65 MXN</strong>
+        <a class="drink-link" href="https://www.ubereats.com/mx/store/cafe-verdugo/3zZlkYTuQ_y2qM_UmuQTBA" target="_blank">
+          Pedir en Uber Eats
+        </a>
+      </div>
 
-    .card img {
-      width: 100%;
-      border-radius: 16px;
-      margin-bottom: 16px;
-      aspect-ratio: 4 / 4.6;
-      object-fit: cover;
-    }
+      <div class="card">
+        <img src="assets/images/frappe-oreo.jpg" alt="Frappe Oreo">
+        <div class="card-top">
+          <h3>Frappe Oreo</h3>
+          <span class="tag">Favorito</span>
+        </div>
+        <p>Frío, indulgente y altamente antojable.</p>
+        <strong>$85 MXN</strong>
+        <a class="drink-link" href="https://www.ubereats.com/mx/store/cafe-verdugo/3zZlkYTuQ_y2qM_UmuQTBA" target="_blank">
+          Pedir en Uber Eats
+        </a>
+      </div>
 
-    .card-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      margin-bottom: 8px;
-    }
+      <div class="card">
+        <img src="assets/images/chai-latte.jpg" alt="Chai Latte">
+        <div class="card-top">
+          <h3>Chai Latte</h3>
+          <span class="tag">Especiado</span>
+        </div>
+        <p>Aromático, distinto y reconfortante.</p>
+        <strong>$70 MXN</strong>
+        <a class="drink-link" href="https://www.ubereats.com/mx/store/cafe-verdugo/3zZlkYTuQ_y2qM_UmuQTBA" target="_blank">
+          Pedir en Uber Eats
+        </a>
+      </div>
 
-    .tag {
-      display: inline-block;
-      padding: 6px 12px;
-      border-radius: 999px;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.4px;
-      background: rgba(200,155,60,0.14);
-      color: var(--gold);
-      border: 1px solid rgba(200,155,60,0.2);
-      white-space: nowrap;
-    }
+      <div class="card">
+        <img src="assets/images/latte-frio.jpg" alt="Latte Frío">
+        <div class="card-top">
+          <h3>Latte Frío</h3>
+          <span class="tag">Refrescante</span>
+        </div>
+        <p>Ligero, fresco y balanceado.</p>
+        <strong>$70 MXN</strong>
+        <a class="drink-link" href="https://www.ubereats.com/mx/store/cafe-verdugo/3zZlkYTuQ_y2qM_UmuQTBA" target="_blank">
+          Pedir en Uber Eats
+        </a>
+      </div>
 
-    .card h3 {
-      margin: 0;
-      font-size: 22px;
-      line-height: 1.15;
-    }
+      <div class="card">
+        <img src="assets/images/espresso.jpg" alt="Espresso Americano">
+        <div class="card-top">
+          <h3>Espresso Americano</h3>
+          <span class="tag">Directo</span>
+        </div>
+        <p>Puro, intenso y sin rodeos.</p>
+        <strong>$40 MXN</strong>
+        <a class="drink-link" href="https://www.ubereats.com/mx/store/cafe-verdugo/3zZlkYTuQ_y2qM_UmuQTBA" target="_blank">
+          Pedir en Uber Eats
+        </a>
+      </div>
 
-    .card p {
-      margin: 0 0 16px;
-      max-width: 100%;
-      font-size: 15px;
-      color: var(--text-soft);
-      text-align: left;
-    }
-
-    .drink-link {
-      margin: 0;
-      width: 100%;
-      text-align: center;
-      border-radius: 14px;
-      padding: 13px 18px;
-    }
+    </div>
+  </div>
+</section>
 
     /* EXPERIENCIA */
     .experiencia {
